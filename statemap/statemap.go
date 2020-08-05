@@ -87,12 +87,13 @@ func (s *Statemap) SetState(entityName, stateName, tag string, time time.Time) {
 	s.stateData[entityName] = append(s.stateData[entityName], d)
 }
 
-func (s *Statemap) Dump() {
+func (s *Statemap) Dump() string {
 
+	ret := ""
 	if res, err := json.Marshal(s.metadata); err != nil {
-		fmt.Println("error marshal json")
+		fmt.Println("error marshal json: ", err)
 	} else {
-		fmt.Printf("%+v\n", string(res))
+		ret = fmt.Sprintf("%+v\n", string(res))
 	}
 
 	for _, v := range s.stateData {
@@ -105,8 +106,10 @@ func (s *Statemap) Dump() {
 			if res, err := json.Marshal(d); err != nil {
 				fmt.Println("err marshal datum json")
 			} else {
-				fmt.Println(string(res))
+				ret = fmt.Sprintf("%s%s\n", ret, string(res))
 			}
 		}
 	}
+
+	return (ret)
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/kodykantor/go-statemap/statemap"
 	"time"
+	"fmt"
 )
 
 func main() {
@@ -11,5 +12,5 @@ func main() {
 	smap.SetState("mymain", "done", "", time.Now())
 	smap.SetState("mymain", "def done now", "", time.Now())
 
-	smap.Dump()
+	fmt.Println(smap.Dump())
 }
