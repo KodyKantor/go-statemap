@@ -53,12 +53,17 @@ func New(title string, host string, entityKind string) Statemap {
 	}
 }
 
-func (s *Statemap) SetState(entityName, stateName, tag string, time time.Time) {
+func (s *Statemap) SetState(entityName, stateName, tag, color string, time time.Time) {
 
-	/* Find the existing state info (number, color), or create it. */
+	var col interface{} = nil
+	if color != "" {
+		col = color
+	}
+
+	/* Find the existing state info, or create it. */
 	if _, ok := s.metadata.States[stateName]; !ok {
 		s.metadata.States[stateName] = State{
-			Color: nil,
+			Color: col,
 			Value: len(s.metadata.States),
 		}
 	}

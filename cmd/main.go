@@ -8,9 +8,9 @@ import (
 
 func main() {
 	smap := statemap.New("testmap", "myhost", "")
-	smap.SetState("mymain", "starting", "", time.Now())
-	smap.SetState("mymain", "done", "", time.Now())
-	smap.SetState("mymain", "def done now", "", time.Now())
+	smap.SetState("mymain", "starting", "", "orange", time.Now())
+	smap.SetState("mymain", "done", "", "blue", time.Now())
+	smap.SetState("mymain", "def done now", "", "red", time.Now())
 
 	fmt.Println(smap.Dump())
 }
